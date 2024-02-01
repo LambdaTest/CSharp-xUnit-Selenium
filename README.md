@@ -72,7 +72,7 @@ set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
 
 > **Test Scenario**: Check out the sample SingleTest.cs file. This xUnit Selenium script tests a sample to-do list app by marking a couple of items as done, adding a new item to the list, and finally displaying the count of pending items as output.
 
-**Step 3:** Navigate to [config.json](https://github.com/LambdaTest/CSharp-xUnit-Selenium/blob/master/xUnitSelenium/config.json) using VSCode. Replace this code in the config.json file in your project.
+**Step 3:** Navigate to [config.json](https://github.com/LambdaTest/CSharp-xUnit-Selenium/blob/master/XUnit-LambdaTest/config.json/) using VSCode. Replace this code in the config.json file in your project.
 
 ### Configuration of Your Test Capabilities
 
