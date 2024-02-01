@@ -56,7 +56,7 @@ Ensure you have your LambdaTest credentials to run C# automation scripts. Obtain
 
 **For Linux/macOS:**
 
-``` sh
+```sh
 export LT_USERNAME="YOUR_USERNAME" 
 export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
 ```
@@ -211,9 +211,7 @@ Stay updated with the latest features and product add-ons at [Changelog](https:/
 * Geolocation testing of web and mobile apps across 53+ countries.
 * LT Browser - for responsive testing across 50+ pre-installed mobile, tablets, desktop, and laptop viewports.
 
-[<img height="58" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png
-
-">](https://accounts.lambdatest.com/register)
+[<img height="58" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
 
 ## We Are Here to Help You :headphones:
 
