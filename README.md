@@ -1,221 +1,118 @@
-# Run Selenium Tests With xUnit On LambdaTest
-
-![LambdaTest Logo](https://user-images.githubusercontent.com/70570645/171429042-610e8f3d-d2a4-4896-8bdb-8aeed87e0ce7.png)
-
-*Learn how to run C# scripts using the xUnit framework.*
+# Run Selenium Tests with C# xUnit on TestMu AI (Formerly LambdaTest)
 
 <p align="center">
-  <a href="https://www.lambdatest.com/blog/" target="_bank">Blog</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/support/docs/" target="_bank">Docs</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/learning-hub/" target="_bank">Learning Hub</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/newsletter/" target="_bank">Newsletter</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/certifications/" target="_bank">Certifications</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.youtube.com/c/LambdaTest" target="_bank">YouTube</a>
+  <a href="https://www.testmuai.com/"><img src="https://img.shields.io/badge/MADE%20BY%20TestMu%20AI-000000.svg?style=for-the-badge&labelColor=000" alt="Made by TestMu AI"></a>
+  <a href="https://www.nuget.org/packages/xunit/"><img src="https://img.shields.io/nuget/v/xunit.svg?style=for-the-badge&labelColor=000000" alt="xUnit version"></a>
+  <a href="https://community.testmuai.com/"><img src="https://img.shields.io/badge/Join%20the%20community-blueviolet.svg?style=for-the-badge&labelColor=000000" alt="Community"></a>
 </p>
-&emsp;
-&emsp;
-&emsp;
 
-[<img height="58" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
+## Getting Started
 
-## Table of Contents:
+[TestMu AI](https://www.testmuai.com/) (Formerly LambdaTest) is the world's first full-stack AI Agentic Quality Engineering platform that empowers teams to test intelligently, smarter, and ship faster. Built for scale, it offers a full-stack testing cloud with 10K+ real devices and 3,000+ browsers. With AI-native test management, MCP servers, and agent-based automation, TestMu AI supports Selenium, Appium, Playwright, and all major frameworks.
 
-* [Prerequisites](#prerequisites)
-* [Run Your First Test](#run-your-first-test)
-* [Parallel Testing With xUnit](#running-your-parallel-tests-using-xunit-testing-framework)
-* [Local Testing With xUnit](#testing-locally-hosted-or-privately-hosted-projects)
+With TestMu AI (Formerly LambdaTest), you can run C# xUnit Selenium automation tests on a scalable cloud browser grid. This sample shows how to configure xUnit with Selenium WebDriver to run on the TestMu AI cloud.
 
-## Prerequisites
+- [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
+- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/) for the full setup walkthrough.
 
-Before you start performing **C#** automation testing with **Selenium** using xUnit, you need to:
+### Prerequisites
 
-* Download and install **Selenium WebDriver** from its [official website](https://www.selenium.dev/downloads/).
-* Ensure you have the latest version of C#.
-* **.NET** framework for guidelines while developing a range of applications using C#.
-* Download [Selenium WebDriver Language Binding](https://www.selenium.dev/downloads/) for C# and extract them to the appropriate folder. Require a [.NET Core SDK](https://dotnet.microsoft.com/en-us/download) of 8.0 or greater version.
+- .NET SDK 8.0 or higher
+- xUnit framework
+- Selenium WebDriver for C#
+- A TestMu AI (Formerly LambdaTest) account with your username and access key
 
-### Installing Selenium Dependencies And Tutorial Repo
+### Setup
 
-**Step 1:** Clone the LambdaTest CSharp-xUnit-Selenium GitHub repository and navigate to the code directory:
+Clone and install dependencies:
 
-```
-git clone https://github.com/LambdaTest/CSharp-xUnit-Selenium
-cd CSharp-xUnit-Selenium
+```bash
+git clone https://github.com/LambdaTest/CSharp-xUnit-Selenium && cd CSharp-xUnit-Selenium
 ```
 
-### Setting up Your Authentication
+Set your credentials as environment variables.
 
-Ensure you have your LambdaTest credentials to run C# automation scripts. Obtain these credentials from the [LambdaTest Automation Dashboard](https://automation.lambdatest.com/login) or your LambdaTest Profile.
+**macOS / Linux:**
 
-**Step 2:** Set your LambdaTest Username and Access Key in environment variables.
-
-**For Linux/macOS:**
-
-```sh
-export LT_USERNAME="YOUR_USERNAME" 
+```bash
+export LT_USERNAME="YOUR_USERNAME"
 export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
 ```
 
-**For Windows:**
+**Windows:**
 
-```sh
+```bash
 set LT_USERNAME="YOUR_USERNAME"
 set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
 ```
 
-## Run Your First Test
+### Run tests
 
-> **Test Scenario**: Check out the sample SingleTest.cs file. This xUnit Selenium script tests a sample to-do list app by marking a couple of items as done, adding a new item to the list, and finally displaying the count of pending items as output.
-
-**Step 3:** Navigate to [config.json](https://github.com/LambdaTest/CSharp-xUnit-Selenium/blob/master/XUnit-LambdaTest/config.json/) using VSCode. Replace this code in the config.json file in your project.
-
-### Configuration of Your Test Capabilities
-
-**Step 4:** In the config, update your test capabilities. We are passing browser, browser version, and operating system information, along with LambdaTest Selenium grid capabilities via the capabilities object. 
-
-Example capabilities object:
-
-
-```json
-{
-  "server": "hub.lambdatest.com",
-  "user": "LT_USERNAME",
-  "key": "LT_ACCESS_KEY",
-
-  "capabilities": {
-    "lt:options": {
-      "buildName": "xunit build",
-      "sessionName": "lambdatest xunit sample test",
-      "visual": "true",
-      "plugin": "xunit:sample"
-    }
-  },
-
-  "environments": [
-    {
-      "browserName": "chrome"
-    },
-    {
-      "browserName": "firefox"
-    },
-    {
-      "browserName": "safari"
-    }
-  ],
-
-  "TunnelOptions": {
-    "tunnel": false
-  }
-}
-
-```
-
-**Note:** Generate capabilities for your test requirements with the help of the **[Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/)**.
-
-### Executing the Test
-
-**Step 5:** Build the solution in Visual Studio.
-
-**Step 6:** Run the
-
- tests from the Test Explorer in Visual Studio.
-
-### Executing in Linux/macOS
-
-* Clean and rebuild the project.
-
-```sh
-dotnet clean
-```
-* Execute Single Test 
-
-```sh
+```bash
 dotnet test --filter "profile=single"
 ```
 
-## Running Your Parallel Tests Using xUnit Testing Framework
+For parallel execution across browsers:
 
-**Executing Parallel tests in Windows**
-
-Run all tests from the Test Explorer in Visual Studio for parallel execution.
-
-**Executing parallel tests in Linux/MacOS**
-
-```sh
+```bash
 dotnet test --filter "profile=parallel"
 ```
 
-## Testing Locally Hosted Or Privately Hosted Projects
+View results on your TestMu AI dashboard.
 
-For testing locally hosted or privately hosted projects with LambdaTest Selenium grid using LambdaTest Tunnel, follow the [LambdaTest Tunnel documentation](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/).
+### Local testing with TestMu AI Tunnel
 
-Download the LambdaTest Tunnel binary for your OS and run the following command:
+To test locally hosted apps, set up the TestMu AI tunnel. OS-specific guides:
 
-```bash
-LT -user {user’s login email} -key {user’s access key}
+- [Local Testing on Windows](https://www.testmuai.com/support/docs/local-testing-for-windows/)
+- [Local Testing on macOS](https://www.testmuai.com/support/docs/local-testing-for-macos/)
+- [Local Testing on Linux](https://www.testmuai.com/support/docs/local-testing-for-linux/)
+
+Add the following to your capabilities:
+
+```js
+tunnel: true,
 ```
 
-**Tunnel Capability**
+## Contributions
 
-```json
-"lt:options": {
-      "buildName": "xunit build",
-      "sessionName": "lambdatest xunit sample test",
-      "visual": "true",
-      "plugin": "xunit:sample",
-      "tunnel": "true"
-    }
-```
+Contributions are welcome. Open an issue to discuss your idea before submitting a pull request. When reporting bugs, include your .NET version, OS, and xUnit version.
 
-## Tutorials 📙
+## TestMu AI (Formerly LambdaTest) Community
 
-*coming soon*
+Connect with testers and developers in the [TestMu AI Community](https://community.testmuai.com/). Ask questions, share what you are building, and discuss best practices in test automation and DevOps.
 
-Subscribe To Our [LambdaTest YouTube Channel 🔔](https://www.youtube.com/c/LambdaTest) for the latest video tutorials.
+## TestMu AI (Formerly LambdaTest) Certifications
 
-## Documentation & Resources :books:
+Earn free [TestMu AI Certifications](https://www.testmuai.com/certifications/) for testers, developers, and QA engineers. Validate your skills in Selenium, Cypress, Playwright, Appium, Espresso and more. Industry-recognized, shareable on LinkedIn, and built by practitioners, not marketers.
 
-* [LambdaTest Documentation](https://www.lambdatest.com/support/docs/)
-* [LambdaTest Blog](https://www.lambdatest.com/blog/)
-* [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/)    
+## Learning Resources by TestMu AI (Formerly LambdaTest)
 
-## LambdaTest Community :busts_in_silhouette:
+Learn modern testing through tutorials, guides, videos, and weekly updates:
 
-Join the [LambdaTest Community](https://community.lambdatest.com/) to interact with tech enthusiasts. Connect, ask questions, and learn from professionals worldwide.
+* [TestMu AI Blog](https://www.testmuai.com/blog/)
+* [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
+* [TestMu AI on YouTube](https://www.youtube.com/@TestMuAI)
+* [TestMu AI Newsletter](https://www.testmuai.com/newsletter/)
 
-## What's New At LambdaTest ❓
+## LambdaTest is Now TestMu AI
 
-Stay updated with the latest features and product add-ons at [Changelog](https://changelog.lambdatest.com/).
+On **January 12, 2026**, [LambdaTest evolved to TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/), the world's first fully autonomous **Agentic AI Quality Engineering Platform**.
 
-## About LambdaTest
+Same team. Same infrastructure. Same customer accounts. All existing LambdaTest logins, scripts, capabilities, and integrations continue to work without change.
 
-[LambdaTest](https://www.lambdatest.com/) is a leading test execution and orchestration platform. It allows users to run both manual and automated testing of web and mobile apps across various browsers, operating systems, and real device combinations. Over 500 enterprises and 1 million+ users across 130+ countries rely on LambdaTest for their testing needs.
+👉 Find the new home for [LambdaTest](https://www.testmuai.com).
 
-### Features
+### How LambdaTest Evolved into TestMu AI
 
-* Run Selenium, Cypress, Puppeteer, Playwright, and Appium automation tests across 3000+ real desktop and mobile environments.
-* Real-time Cross-browser testing on 3000+ environments.
-* Test on Real device cloud.
-* Blazing fast test automation with HyperExecute.
-* Accelerate testing, shorten job times, and get faster feedback on code changes with Test At Scale.
-* Smart Visual Regression Testing on the cloud.
-* 120+ third-party integration with your favorite tools for CI/CD, Project Management, Codeless Automation, and more.
-* Automated Screenshot testing across multiple browsers in a single click.
-* Local testing of web and mobile apps.
-* Online Accessibility Testing across 3000+ desktop and mobile browsers, browser versions, and operating systems.
-* Geolocation testing of web and mobile apps across 53+ countries.
-* LT Browser - for responsive testing across 50+ pre-installed mobile, tablets, desktop, and laptop viewports.
+In 2017, we launched LambdaTest with a simple mission: make testing fast, reliable, and accessible. As LambdaTest grew, we expanded into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the full depth of the testing lifecycle.
 
-[<img height="58" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
+As software development entered the AI era, testing had to evolve, too. We rebuilt the architecture to be AI-native from the ground up, with autonomous agents that **plan, author, execute, analyze, and optimize tests** while keeping humans in the loop. The platform integrates with your repos, CI, IDEs, and terminals, continuously learning from every code change and development signal.
 
-## We Are Here to Help You :headphones:
+That evolution earned a new name: **TestMu AI**, built for an AI-first future of quality engineering. TestMu is not a new name for us. It is the name of our annual community conference, which has brought together 100,000+ quality engineers to discuss how AI would reshape testing, long before that became an industry norm.
 
-* Have a query? We are available 24x7 to help. [Contact Us](mailto:support@lambdatest.com)
-* For more info, visit [LambdaTest](https://www.lambdatest.com/)
+What started as a high-performance cloud testing platform has transformed into an AI-native, multi-agent system powering a connected, end-to-end quality layer. That evolution defined a new identity: LambdaTest evolved into TestMu AI, built for an AI-first future of quality engineering.
 
+## Support
 
+Got a question? Email [support@testmuai.com](mailto:support@testmuai.com) or chat with us 24x7 from our chat portal.
